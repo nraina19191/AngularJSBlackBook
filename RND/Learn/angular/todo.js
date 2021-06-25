@@ -1,4 +1,4 @@
-var ang = angular.module("learnangular", []);
+var ang = angular.module("app1", ['service1']);
 ang.directive("nr", function () {
     return {
         scope: {
@@ -12,9 +12,11 @@ ang.filter("upr", function () {
     return function (x) {
         return x.toUpperCase();
     }
-}); 
+});
 
 /*
+Use custom directives to manipulate DOM
+
 Custom directives - The legal restrict values are:
 
 app.directive("directive_name", function(){
@@ -34,7 +36,7 @@ A for Attribute
 C for Class
 M for Comment
 */
-ang.controller("TodoController", function ($scope, $location, $http) {
+ang.controller("TodoController", ['$location', '$http', 'nrSvc', '$scope', function ($location, $http, nrSvc, $scope) {
     $scope.todos = [{ text: 'Learn Angular', done: false }, { text: 'Build an App', done: false }];
     $scope.totalTodos = $scope.todos.length;
     $scope.addTodo = function () {
@@ -50,9 +52,6 @@ ang.controller("TodoController", function ($scope, $location, $http) {
 
     $scope.currentLocation = $location.absUrl();
     $scope.apidata = 'loading API data ....';
-    $http.get('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
-        $scope.apidata = response.data;
-    });
 
-
-});
+    $scope.apidata = nrSvc.datum;
+}]);
