@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="learnangular">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="angular/todo.js"></script>
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        .done-true {
+            text-decoration-line: line-through;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" ng-controller="TodoController">
+        {{todos.length}}
+        <ul>
+            <li ng-repeat="t in todos | orderBy: 'text'">
+                <input type="checkbox" ng-model="t.done" />
+                <span class="done-{{t.done}} myclass" ng-bind="t.text | upr"></span>
+            </li>
+        </ul>
+
+        <input type="text" ng-model="addNewTodoInput" />
+        <button ng-click="addTodo()">Add Todos</button>
+        <button ng-click="clearCompletedTodos()">Clear Completed Todos</button>
+        <p>Testing new Directive</p>
+        <nr></nr>
+        <p>
+            <span>Location Service</span>
+            {{currentLocation.toString()}}
+        </p>
+        <p>
+            <span>HTTP Service</span>
+            <nr data-nhtml="Is Custom Data"></nr>
+        </p> 
+    </div>
+</body>
+</html>
