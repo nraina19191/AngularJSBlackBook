@@ -49,9 +49,9 @@ ang.controller("TodoController", function ($scope, $location, $http) {
     }
 
     $scope.currentLocation = $location.absUrl();
-
-    $http.get('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png').then(function () {
-
+    $scope.apidata = 'loading API data ....';
+    $http.get('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
+        $scope.apidata = response.data;
     });
 
 
