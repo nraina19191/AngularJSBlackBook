@@ -1,4 +1,4 @@
-var ang = angular.module("app1", ['service1']);
+var ang = angular.module("app1", ['serviceCollection']);
 ang.directive("nr", function () {
     return {
         scope: {
@@ -36,7 +36,7 @@ A for Attribute
 C for Class
 M for Comment
 */
-ang.controller("TodoController", ['$location', '$http', 'nrSvc', '$scope', function ($location, $http, nrSvc, $scope) {
+ang.controller("TodoController", ['$location', '$http', 'WeatherService', '$scope', function ($location, $http, weatherService, $scope) {
     $scope.todos = [{ text: 'Learn Angular', done: false }, { text: 'Build an App', done: false }];
     $scope.totalTodos = $scope.todos.length;
     $scope.addTodo = function () {
@@ -53,5 +53,28 @@ ang.controller("TodoController", ['$location', '$http', 'nrSvc', '$scope', funct
     $scope.currentLocation = $location.absUrl();
     $scope.apidata = 'loading API data ....';
 
-    $scope.apidata = nrSvc.datum;
+    weatherService.GetResult(function (data) {
+        $scope.apidata = data;
+    });
+
+    var t = weatherService.GetResultWithPromise;
+    t.then(function (data) {
+        $scope.apidatapr = data;
+    }, function (data) {
+        $scope.apidatapr = 'reject';
+    });
+
+    $scope.cars = [
+        {
+            Model: '-Select-',
+            Type: ''
+        }, {
+            Model: 'Ford',
+            Type: 'SUV'
+        }, {
+            Model: 'Honda',
+            Type: 'Sedan'
+        }];
+
+    $scope.currentCar = '';
 }]);

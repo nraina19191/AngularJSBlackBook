@@ -17,6 +17,7 @@
 
         p {
             margin-top: 10px;
+            border-bottom: 2px #ccc solid;
         }
     </style>
 </head>
@@ -43,6 +44,18 @@
             <span>HTTP Service</span>
             <nr data-nhtml="{{apidata}}"></nr>
         </p> 
+        <p>
+            <span>HTTP Service With Promise</span>
+            <nr data-nhtml="{{apidatapr}}"></nr>
+        </p> 
+        <p>
+            <span>Dropdown List</span>
+            <select ng-model="currentCar" ng-options="x.Model for x in cars"></select>
+            <select ng-model="currentCar">
+                <option ng-repeat="x in cars" ng-value="{{x}}">{{x.Model}}</option>
+            </select>
+            <span ng-bind="currentCar.Model"></span>
+        </p>
     </div>
 </body>
 </html>

@@ -1,12 +1,20 @@
-var n1 = angular.module('service1', []);
-n1.factory('nrSvc', ['$http', function ($http) {
-    var datum = {}
-    var refresh = function () {
-        $http.get('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
-            datum = response.data;
-        });
-    };
+var n1 = angular.module('serviceCollection', []);
+n1.factory('WeatherService', ['$http', function ($http) {
+    return {
+        GetResult: function (callback) {
+            $http.get('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
+                callback(response.data);
+            }, function () {
+                callback('reject');
+            })
+        },
 
-    refresh();
-    return { datum: datum };
+        GetResultWithPromise: new Promise(function (resolve, reject) {
+            $http.get('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
+                resolve(response.data);
+            }, function () {
+                reject('reject');
+            })
+        })
+    }
 }]);
