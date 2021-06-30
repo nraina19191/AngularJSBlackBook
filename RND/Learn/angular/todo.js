@@ -123,3 +123,13 @@ ang.controller("TodoController", ['$location', '$http', 'WeatherService', '$scop
     */
 
 }]);
+
+var XchangeController = function (currencyCodeClient) {
+    currencyCodeClient.GetAllCurrencyCodes(this, function (data, $ctrl) {
+        //debugger;
+        $ctrl.currencyList = data;
+    });
+}
+
+XchangeController.$inject = ['currencyCodeClient'];
+ang.controller('XchangeController', XchangeController);

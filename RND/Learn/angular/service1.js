@@ -19,3 +19,15 @@ n1.factory('WeatherService', ['$http', function ($http) {
         })
     }
 }]);
+
+n1.factory('currencyCodeClient', ['$http', function ($http) {
+    return {
+        GetAllCurrencyCodes: function(caller, callback) {
+            return $http.get('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json').then(function (response) {
+                callback(response.data, caller);
+            }, function () {
+                callback('reject', caller);
+            })
+        }
+    }
+}]);
