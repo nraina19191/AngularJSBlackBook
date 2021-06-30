@@ -43,11 +43,11 @@
         <p>
             <span>HTTP Service</span>
             <nr data-nhtml="{{apidata}}"></nr>
-        </p> 
+        </p>
         <p>
             <span>HTTP Service With Promise</span>
             <nr data-nhtml="{{apidatapr}}"></nr>
-        </p> 
+        </p>
         <p>
             <span>Dropdown List</span>
             <select ng-model="currentCar" ng-options="x.Model for x in cars"></select>
@@ -56,6 +56,47 @@
             </select>
             <span ng-bind="currentCar.Model"></span>
         </p>
+        <p data-ng-init="allowTerms=true">
+            <span>Disabled | ShowHide</span>
+            <input type="checkbox" name="allowTerms" data-ng-model="allowTerms" />
+            <input type="button" name="actionTerms" data-ng-disabled="!allowTerms" data-ng-click="allowTermAction($event)" value="Approve" />
+            <span data-ng-show="allowTerms">Content Terms Condition</span>
+        </p>
+        <p>
+            <span>Contact Form with validation</span>
+
+        </p>
+        <form name="frm">
+            <style>
+                input.ng-valid-email {
+                    border: 2px solid red;
+                }
+            </style>
+            <div>
+                Enter Name : <input type="text" ng-model="name" name="name" required />
+                <span ng-show="frm.name.$touched && frm.name.$invalid">Name required</span>
+            </div>
+            <div>
+                Enter Email : <input type="email" ng-model="email" name="email" />
+            </div>
+            <div>
+                Enter Pie value : <input type="text" ng-model="pie" name="pie" required validate-pie />
+                <span ng-show="frm.pie.$touched && frm.pie.$invalid">Pie Invalid</span>
+            </div>
+            <div>
+                <input type="button" value="Submit" />
+            </div>
+        </form>
+        <p></p>
+        <div>
+            <span>Higher Scope {{countevent}}</span>
+            <div data-ng-controller="TodoController">
+                <span>Child Scope {{countevent}}</span>
+            </div>
+            <input type="button" data-ng-click="$emit('Events')" value="Emit" />
+            <input type="button" data-ng-click="$broadcast('Events')" value="Boardcast" />
+        </div>
+        <p></p>
     </div>
 </body>
 </html>
