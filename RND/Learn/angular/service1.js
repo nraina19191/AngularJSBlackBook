@@ -1,3 +1,4 @@
+/*Service*/
 var n1 = angular.module('serviceCollection', []);
 n1.factory('WeatherService', ['$http', function ($http) {
     return {
