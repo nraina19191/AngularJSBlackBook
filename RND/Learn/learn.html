@@ -23,89 +23,104 @@
     </style>
 </head>
 <body>
-        <div class="main" ng-app="app1" ng-controller="TodoController">
-            {{todos.length}}
-            <ul>
-                <li ng-repeat="t in todos | orderBy: 'text'">
-                    <input type="checkbox" ng-model="t.done" />
-                    <span class="done-{{t.done}} myclass" ng-bind="t.text | upr"></span>
-                </li>
-            </ul>
+    <div class="main" ng-app="app1" ng-controller="TodoController">
+        {{todos.length}}
+        <ul>
+            <li ng-repeat="t in todos | orderBy: 'text'">
+                <input type="checkbox" ng-model="t.done" />
+                <span class="done-{{t.done}} myclass" ng-bind="t.text | upr"></span>
+            </li>
+        </ul>
 
-            <input type="text" ng-model="addNewTodoInput" />
-            <button ng-click="addTodo()">Add Todos</button>
-            <button ng-click="clearCompletedTodos()">Clear Completed Todos</button>
-            <p>Testing new Directive</p>
-            <nr></nr>
-            <p>
-                <span>Location Service</span>
-                {{currentLocation.toString()}}
-            </p>
-            <p>
-                <span>HTTP Service</span>
-                <nr data-nhtml="{{apidata}}"></nr>
-            </p>
-            <p>
-                <span>HTTP Service With Promise</span>
-                <nr data-nhtml="{{apidatapr}}"></nr>
-            </p>
-            <p>
-                <span>Dropdown List</span>
-                <select ng-model="currentCar" ng-options="x.Model for x in cars"></select>
-                <select ng-model="currentCar">
-                    <option ng-repeat="x in cars" ng-value="{{x}}">{{x.Model}}</option>
-                </select>
-                <span ng-bind="currentCar.Model"></span>
-            </p>
-            <p data-ng-init="allowTerms=true">
-                <span>Disabled | ShowHide</span>
-                <input type="checkbox" name="allowTerms" data-ng-model="allowTerms" />
-                <input type="button" name="actionTerms" data-ng-disabled="!allowTerms" data-ng-click="allowTermAction($event)" value="Approve" />
-                <span data-ng-show="allowTerms">Content Terms Condition</span>
-            </p>
-            <p>
-                <span>Contact Form with validation</span>
+        <input type="text" ng-model="addNewTodoInput" />
+        <button ng-click="addTodo()">Add Todos</button>
+        <button ng-click="clearCompletedTodos()">Clear Completed Todos</button>
+        <p>Testing new Directive</p>
+        <nr></nr>
+        <p>
+            <span>Location Service</span>
+            {{currentLocation.toString()}}
+        </p>
+        <p>
+            <span>HTTP Service</span>
+            <nr data-nhtml="{{apidata}}"></nr>
+        </p>
+        <p>
+            <span>HTTP Service With Promise</span>
+            <nr data-nhtml="{{apidatapr}}"></nr>
+        </p>
+        <p>
+            <span>Dropdown List</span>
+            <select ng-model="currentCar" ng-options="x.Model for x in cars"></select>
+            <select ng-model="currentCar">
+                <option ng-repeat="x in cars" ng-value="{{x}}">{{x.Model}}</option>
+            </select>
+            <span ng-bind="currentCar.Model"></span>
+        </p>
+        <p data-ng-init="allowTerms=true">
+            <span>Disabled | ShowHide</span>
+            <input type="checkbox" name="allowTerms" data-ng-model="allowTerms" />
+            <input type="button" name="actionTerms" data-ng-disabled="!allowTerms" data-ng-click="allowTermAction($event)" value="Approve" />
+            <span data-ng-show="allowTerms">Content Terms Condition</span>
+        </p>
+        <p>
+            <span>Contact Form with validation</span>
 
-            </p>
-            <form name="frm">
-                <style>
-                    input.ng-valid-email {
-                        border: 2px solid red;
-                    }
-                </style>
-                <div>
-                    Enter Name : <input type="text" ng-model="name" name="name" required />
-                    <span ng-show="frm.name.$touched && frm.name.$invalid">Name required</span>
-                </div>
-                <div>
-                    Enter Email : <input type="email" ng-model="email" name="email" />
-                </div>
-                <div>
-                    Enter Pie value : <input type="text" ng-model="pie" name="pie" required validate-pie />
-                    <span ng-show="frm.pie.$touched && frm.pie.$invalid">Pie Invalid</span>
-                </div>
-                <div>
-                    <input type="button" value="Submit" />
-                </div>
-            </form>
-            <p></p>
+        </p>
+        <form name="frm">
+            <style>
+                input.ng-valid-email {
+                    border: 2px solid red;
+                }
+            </style>
             <div>
-                <span>Higher Scope {{countevent}}</span>
-                <div data-ng-controller="TodoController">
-                    <span>Child Scope {{countevent}}</span>
-                </div>
-                <input type="button" data-ng-click="$emit('Events')" value="Emit" />
-                <input type="button" data-ng-click="$broadcast('Events')" value="Boardcast" />
+                Enter Name : <input type="text" ng-model="name" name="name" required />
+                <span ng-show="frm.name.$touched && frm.name.$invalid">Name required</span>
             </div>
-            <p></p>
-            <div data-ng-controller="XchangeController as xchange">
-                <ul>
-                    <!--one time binding expression using double colon-->
-                    <li data-ng-repeat="x in ::xchange.currencyList">{{x}}</li>
-                </ul>
+            <div>
+                Enter Email : <input type="email" ng-model="email" name="email" />
             </div>
-            <p></p>
+            <div>
+                Enter Pie value : <input type="text" ng-model="pie" name="pie" required validate-pie />
+                <span ng-show="frm.pie.$touched && frm.pie.$invalid">Pie Invalid</span>
+            </div>
+            <div>
+                <input type="button" value="Submit" />
+            </div>
+        </form>
+        <p></p>
+        <div>
+            <span>Higher Scope {{countevent}}</span>
+            <div data-ng-controller="TodoController">
+                <span>Child Scope {{countevent}}</span>
+            </div>
+            <input type="button" data-ng-click="$emit('Events')" value="Emit" />
+            <input type="button" data-ng-click="$broadcast('Events')" value="Boardcast" />
         </div>
+        <p></p>
+        <div data-ng-controller="XchangeController as xchange">
+            <ul>
+                <!--one time binding expression using double colon-->
+                <li data-ng-repeat="x in ::xchange.currencyList">{{x}}</li>
+            </ul>
+        </div>
+        <p></p>
+        <form novalidate class="simple-form">
+            <label>Name: <input type="text" ng-model="user.name" /></label><br />
+            <label>E-mail: <input type="email" ng-model="user.email" /></label><br />
+            Best Editor: <label><input type="radio" ng-model="user.preference" value="vi" />vi</label>
+            <label><input type="radio" ng-model="user.preference" value="emacs" />emacs</label><br />
+            <input type="button" ng-click="reset()" value="Reset" />
+            <input type="submit" ng-click="update(user)" value="Save" />
+        </form>
+        <pre>user = {{user | json}}</pre>
+        <pre>master = {{master | json}}</pre>
+        <div ng-controller="NRDirectiveController as ndr">
+            <div>{{ndr.name}}</div>
+            <nr-customer detail="p1" notify-customer="alertUser(message)"></nr-customer>
+            <nr-customer detail="p2"></nr-customer>
+        </div>
+    </div>
 </body>
 </html>
 

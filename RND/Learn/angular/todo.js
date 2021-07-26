@@ -122,14 +122,47 @@ ang.controller("TodoController", ['$location', '$http', 'WeatherService', '$scop
     The browser re-renders the view with the updated text.
     */
 
+    $scope.master = {};
+    $scope.update = function (user) {
+        $scope.master = angular.copy(user);
+    };
+
+    $scope.reset = function () {
+        $scope.user = angular.copy($scope.master);
+    };
+
+    $scope.reset();
 }]);
 
 var XchangeController = function (currencyCodeClient) {
     currencyCodeClient.GetAllCurrencyCodes(this, function (data, $ctrl) {
         //debugger;
-        $ctrl.currencyList = data;
+        //$ctrl.currencyList = data;
     });
 }
 
 XchangeController.$inject = ['currencyCodeClient'];
 ang.controller('XchangeController', XchangeController);
+
+ang.controller('NRDirectiveController', ['$scope', '$window', function ($scope, $window) {
+    this.name = "Thor";
+    $scope.alertUser = function (message) {
+        $window.alert(message);
+    }
+    $scope.p1 = { name: 'Nitish Raina', address: 'Bhopal, MP' }
+    $scope.p2 = { name: 'Jon Snow', address: 'Indore, MP' }
+}]).directive('nrCustomer', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            'nrScopeCustomer': "=detail",
+            'notify': "&notifyCustomer"
+        },
+        link: function (scope) {
+            scope.name = "Odin"
+        },
+        //template: 'Name: {{customer.name}} Address: {{customer.address}}'
+        templateUrl: '/customer.html',
+        transclude: true
+    }
+});
