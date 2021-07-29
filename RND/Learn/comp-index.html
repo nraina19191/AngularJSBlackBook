@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!--<script src="//code.angularjs.org/snapshot/angular.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.29/angular-ui-router.min.js" integrity="sha512-pqaTGP67/KI6BZh2w8MfiBDyn4CtkDMiSZrqtiV7KAcCWwnncwvUM3UDCecIAJH6BDL8/py0N1ka3rMI5+7+rg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--Updated v2 repo-->
-    <script type="text/javascript" src="angular/compApp.js"></script>
-    <script type="text/javascript" src="angular/personalDetail.js"></script>
-    <script type="text/javascript" src="angular/profDetail.js"></script>
+    <script type="text/javascript" src="angular/controllers/home.js"></script>
+    <script type="text/javascript" src="angular/controllers/personalDetail.js"></script>
+    <script type="text/javascript" src="angular/controllers/profDetail.js"></script>
     <script type="text/javascript">
     </script>
     <style type="text/css">
@@ -24,14 +24,9 @@
     </style>
 </head>
 <body>
-    <div class="main" ng-app="compApp" data-ng-controller="MainController as main">
-        <personal-detail on-update-detail="main.updateMainData(personalDetail)"></personal-detail>
-        <div>
-            <label>Current Detail Saved</label>
-            <div>
-                <div ng-repeat="x in main.db">{{x}}</div>
-            </div>
-        </div>
+    <div class="main" ng-app="compApp">
+        <header data-ng-include="'angular/templates/nav.html'"></header>
+        <div ui-view></div>
     </div>
 </body>
 </html>

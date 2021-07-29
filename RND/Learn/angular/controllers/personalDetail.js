@@ -2,9 +2,8 @@
     var ctrl = this;
     ctrl.name = "";
     ctrl.address = "";
-    ctrl.updateDetail = function () {
-        let personalDetail = { name: ctrl.name, address: ctrl.address };
-        ctrl.onUpdateDetail({ personalDetail: { name: ctrl.name, address: ctrl.address } });
+    ctrl.updateDetail = function (personalDetail) {
+        ctrl.onUpdateDetail({ personalDetail: { name: ctrl.name, address: ctrl.address, work: personalDetail.work, exp: personalDetail.exp } });
     }
 }
 

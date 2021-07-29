@@ -45,6 +45,22 @@ module.exports = function(grunt){
                 }
             }
         },
+        terser: {
+            dev: {
+                files: {
+                    'dist/<%=destinationPkgNameJS%>.min.js': ['src/*.js']
+                }
+            },
+            staging: {
+                options: {
+                    mangle: true,
+                    sourceMap: true
+                },
+                files: {
+                    'dist-staging/<%=destinationPkgNameJS%>.min.js': ['src/*.js']
+                }
+            }
+        },
         destinationPkgNameJS: "condensemain",
         destinationPkgNameCSS: "libcss"
     });
@@ -52,5 +68,7 @@ module.exports = function(grunt){
     let target = grunt.option('staging') ? 'staging': 'dev';
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.registerTask('default', ['uglify:' + target, 'cssmin:' + target]);
+    grunt.loadNpmTasks('grunt-terser');
+    grunt.registerTask('default', ['uglify:' + target, 'cssmin:' + target]);
+    //grunt.registerTask('terser', ['terser:' + target]);
 };
