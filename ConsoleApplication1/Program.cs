@@ -17,15 +17,17 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Learn o = new Learn();
-            var list = Enumerable.Range(1, 10);
-            o.BinarySearch(list.ToArray(), 5);
+            var list = Enumerable.Range(1, 100000000);
+            int steps = 0;
+            int idx = o.BinarySearch(list.ToArray(), 265, ref steps);
             Console.ReadLine();
         }
 
-        public int BinarySearch(int[] list, int target) {
+        public int BinarySearch(int[] list, int target, ref int steps) {
             int first = 0;
             int last = list.Length - 1;
             while (first <= last) {
+                steps = steps + 1;
                 int midpoint = (int)Math.Ceiling((first + last) / 2d);
                 if (list[midpoint] == target)
                     return midpoint;
