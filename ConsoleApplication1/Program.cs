@@ -1,6 +1,4 @@
-﻿using Microsoft.Security.Application;
-using OfficeOpenXml;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -16,12 +14,13 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Start");
             Learn o = new Learn();
             var list = Enumerable.Range(1, 100000000);
             int steps = 0;
             int idx = o.BinarySearch(list.ToArray(), 265, ref steps);
             Console.ReadLine();
-        }
+        } 
 
         public int BinarySearch(int[] list, int target, ref int steps) {
             int first = 0;
